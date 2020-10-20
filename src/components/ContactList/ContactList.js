@@ -1,36 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
+import ContactListItem from './ContactListItem';
+import s from '../../styled';
 
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+const ContactList = ({ contacts }) => {
+  const isShowContacts = contacts.length > 0;
 
-import s from './ContactList.module.scss';
-import animation from './fadeContacts.module.scss';
-
-const ContactList = ({ isShowContacts, contacts, onRemoveContact }) => {
   return (
     <>
-      <TransitionGroup
-        in={isShowContacts.toString()}
-        component="ul"
-        className={s.ul}
-      >
-        {contacts.map(({ id, name, number }) => (
-          <CSSTransition key={id} timeout={250} classNames={animation}>
-            <li className={s.liItem}>
-              <p>
-                {name}: {number}
-              </p>
-              <button
-                className={s.btnRemove}
-                type="button"
-                onClick={() => onRemoveContact(id)}
-              >
-                Delete
-              </button>
-            </li>
-          </CSSTransition>
-        ))}
-      </TransitionGroup>
+      {isShowContacts && (
+        <s.Ul>
+          {contacts.map(({ id }) => (
+            <ContactListItem key={id} id={id} />
+          ))}
+        </s.Ul>
+      )}
 
       {!isShowContacts && <p>No contacts in data :(</p>}
     </>
@@ -39,10 +25,16 @@ const ContactList = ({ isShowContacts, contacts, onRemoveContact }) => {
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired,
   ).isRequired,
-
-  onRemoveContact: PropTypes.func.isRequired,
 };
 
-export default ContactList;
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getWithFilterContacts(state),
+});
+
+export default connect(mapStateToProps)(ContactList);

@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import contactsOperations from '../../redux/contacts/contactsOperations';
+import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
-
-import s from './ContactForm.module.scss';
+import s from '../../styled';
 
 const INITIAL_STATE = {
   name: '',
   number: '',
 };
 
-export default class ContactForm extends Component {
+class ContactForm extends Component {
   static propTypes = {
-    onAddContact: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    contacts: PropTypes.arrayOf(
+      PropTypes.exact({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+      }).isRequired,
+    ).isRequired,
   };
 
-  state = INITIAL_STATE;
+  state = { ...INITIAL_STATE };
 
   resetState = () => {
     this.setState(INITIAL_STATE);
@@ -28,11 +37,16 @@ export default class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
+    const newContact = { name, number };
 
     if (name && number) {
-      const NewContact = { name, number };
+      const isDuplicate = this.props.contacts.find(
+        contact => contact.name === name,
+      );
 
-      this.props.onAddContact(NewContact);
+      if (isDuplicate) return alert(`'${name}' is already in contacts`);
+
+      this.props.onSubmit(newContact);
       this.resetState();
     }
   };
@@ -42,35 +56,40 @@ export default class ContactForm extends Component {
 
     return (
       <>
-        <form className={s.form} onSubmit={this.handleSubmit}>
-          <label className={s.label}>
+        <s.Form onSubmit={this.handleSubmit}>
+          <s.Label>
             Name
-            <input
-              className={s.input}
+            <s.Input
               type="text"
               placeholder="Сontact name"
               name="name"
               value={name}
               onChange={this.handleChange}
             />
-          </label>
-          <label className={s.label}>
+          </s.Label>
+          <s.Label>
             Number
-            <input
-              className={s.input}
+            <s.Input
               type="number"
               placeholder="Сontact number"
               name="number"
               value={number}
               onChange={this.handleChange}
             />
-          </label>
+          </s.Label>
 
-          <button className={s.button} type="submit">
-            Add contact
-          </button>
-        </form>
+          <s.Button type="submit">Add contact</s.Button>
+        </s.Form>
       </>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getContacts(state),
+});
+const mapDispatchToProps = {
+  onSubmit: contactsOperations.addContact,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
