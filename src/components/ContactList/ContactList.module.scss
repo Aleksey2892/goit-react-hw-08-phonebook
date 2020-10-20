@@ -1,0 +1,44 @@
+.ul {
+  list-style: none;
+  max-width: 500px;
+}
+
+.liItem {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px 2px palevioletred;
+  transition: all 250ms;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    background-color: rgb(231, 231, 214);
+    box-shadow: 0 0 4px 4px palevioletred;
+  }
+}
+
+.btnRemove {
+  min-width: 60px;
+  margin-left: 10px;
+  background: transparent;
+  cursor: pointer;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  font-size: 14px;
+  color: palevioletred;
+  outline: none;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: palevioletred;
+    color: white;
+  }
+}

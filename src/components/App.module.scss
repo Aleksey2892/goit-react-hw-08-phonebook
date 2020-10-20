@@ -1,0 +1,25 @@
+.interfaceBox {
+  position: relative;
+  margin: 0 auto;
+  padding: 30px 10px 40px;
+  max-width: 500px;
+}
+
+.titleApp {
+  display: block;
+  padding: 5px;
+  width: 150px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: palevioletred;
+  box-shadow: -2px 2px 10px 0;
+  border-radius: 10px;
+}
+
+.titleContacts {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}

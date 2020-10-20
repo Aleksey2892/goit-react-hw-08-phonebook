@@ -1,0 +1,15 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Balsamiq Sans', cursive;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}

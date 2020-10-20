@@ -1,0 +1,12 @@
+.filterBox {
+  margin-bottom: 20px;
+}
+
+.inputFilter {
+  text-align: center;
+  border-radius: 5px;
+
+  &::placeholder {
+    font-size: 14px;
+  }
+}
