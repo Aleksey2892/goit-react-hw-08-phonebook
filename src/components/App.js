@@ -5,19 +5,11 @@ import contactsOperations from '../redux/contacts/contactsOperations';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-import styled from 'styled-components';
-
-const Div = styled.div`
-  margin: 0 auto;
-  padding: 10px 10px;
-  max-width: 500px;
-`;
-const TitleH1 = styled.h1`
-  margin-bottom: 20px;
-  font-size: 20px;
-  font-weight: bold;
-`;
-const TitleH2 = styled(TitleH1)``;
+import Register from './Register/Register';
+import Login from './Login/Login';
+import Navigation from './Navigation/Navigation';
+import { Route, Switch } from 'react-router-dom';
+import routes from '../routes';
 
 class App extends React.Component {
   static propTypes = {
@@ -25,22 +17,30 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.props.contactsWithLoading();
+    // this.props.contactsWithLoading();
   }
 
   render() {
     return (
-      <Div>
-        <TitleH1>Phonebook</TitleH1>
+      <>
+        <Navigation />
+        <Switch>
+          <Route path={routes.login} component={Login} />
+          <Route path={routes.registration} component={Register} />
+        </Switch>
 
-        <ContactForm />
+        <div>
+          <h1>Phonebook</h1>
 
-        <TitleH2>Contacts</TitleH2>
+          <ContactForm />
 
-        <Filter />
+          <h2>Contacts</h2>
 
-        <ContactList />
-      </Div>
+          <Filter />
+
+          <ContactList />
+        </div>
+      </>
     );
   }
 }
