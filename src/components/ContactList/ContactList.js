@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import contactsSelectors from '../../redux/contacts/contactsSelectors';
+import { contactsSelectors } from '../../redux/contacts';
 import PropTypes from 'prop-types';
+
 import ContactListItem from './ContactListItem';
 import s from '../../styled';
 

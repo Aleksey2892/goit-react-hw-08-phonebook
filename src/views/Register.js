@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authOperations } from '../../redux/auth';
+import { authOperations } from '../redux/auth';
+import PropTypes from 'prop-types';
 
 const INITIAL_STATE = {
   name: '',
@@ -9,6 +10,10 @@ const INITIAL_STATE = {
 };
 
 class Register extends Component {
+  static propTypes = {
+    onRegister: PropTypes.func.isRequired,
+  };
+
   state = { ...INITIAL_STATE };
 
   handleSubmit = e => {

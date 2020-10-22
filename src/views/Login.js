@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authOperations } from '../../redux/auth';
+import { authOperations } from '../redux/auth';
+import PropTypes from 'prop-types';
 
 const INITIAL_STATE = {
   email: '',
@@ -8,6 +9,10 @@ const INITIAL_STATE = {
 };
 
 class Login extends Component {
+  static propTypes = {
+    onLogin: PropTypes.func.isRequired,
+  };
+
   state = { ...INITIAL_STATE };
 
   handleSubmit = e => {

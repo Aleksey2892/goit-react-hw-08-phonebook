@@ -1,7 +1,34 @@
-import authActions from './authActions';
+import { authActions } from './';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+
+const tokenForAxios = {
+  setToken: token =>
+    (axios.defaults.headers.common.Authorization = `Bearer ${token}`),
+
+  unsetToken: () => (axios.defaults.headers.common.Authorization = ''),
+};
+
+const getCurrentUser = () => async (dispatch, getState) => {
+  dispatch(authActions.getCurrentUserRequest());
+
+  const {
+    auth: { token: prevToken },
+  } = getState();
+
+  if (!prevToken) return;
+
+  try {
+    tokenForAxios.setToken(prevToken);
+
+    const { data } = await axios.get('/users/current');
+
+    dispatch(authActions.getCurrentUserSuccess(data));
+  } catch (error) {
+    dispatch(authActions.getCurrentUserError(error));
+  }
+};
 
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
@@ -9,6 +36,8 @@ const register = credentials => async dispatch => {
   try {
     const { data } = await axios.post('/users/signup', credentials);
     console.log(data);
+
+    tokenForAxios.setToken(data.token);
 
     dispatch(authActions.registerSuccess({ data }));
   } catch (error) {
@@ -23,10 +52,26 @@ const logIn = credentials => async dispatch => {
     const { data } = await axios.post('/users/login', credentials);
     console.log(data);
 
+    tokenForAxios.setToken(data.token);
+
     dispatch(authActions.loginSuccess(data));
   } catch (error) {
     dispatch(authActions.loginError(error));
   }
 };
 
-export default { register, logIn };
+const logOut = () => async dispatch => {
+  dispatch(authActions.logoutRequest());
+
+  try {
+    await axios.post('/users/logout');
+
+    tokenForAxios.unsetToken();
+
+    dispatch(authActions.logoutSuccess());
+  } catch (error) {
+    dispatch(authActions.logoutError(error));
+  }
+};
+
+export default { getCurrentUser, register, logIn, logOut };
