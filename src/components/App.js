@@ -5,11 +5,6 @@ import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
 
-// import PhonebookPage from '../views/PhonebookPage';
-// import Register from '../views/Register';
-// import Login from '../views/Login';
-// import Navigation from './Navigation/Navigation';
-// import UserBar from './UserBar/UserBar';
 import { PublicRoute, PrivateRoute } from './CustomRoutes/';
 
 const HomePage = lazy(() =>
@@ -37,7 +32,6 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log('app');
     this.props.getLoginWithLoading();
   }
 
