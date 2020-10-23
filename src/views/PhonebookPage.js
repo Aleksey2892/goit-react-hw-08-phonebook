@@ -14,10 +14,6 @@ class PhonebookPage extends Component {
   };
 
   componentDidMount() {
-    if (!this.props.isLogin) return this.props.history.replace('/login');
-
-    console.log('login');
-    this.props.getLoginWithLoading();
     this.props.getContactsWithLoading();
   }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { authSelectors } from '../../redux/auth';
 import routes from '../../routes';
+import PropTypes from 'prop-types';
 
 const Navigation = ({ isLogin }) => {
   const NavLinkContacts = <NavLink to={routes.contacts}>Contacts</NavLink>;
@@ -14,14 +15,16 @@ const Navigation = ({ isLogin }) => {
   );
 
   return (
-    <>
-      <nav>
-        <NavLink to={routes.home}>Home</NavLink>
+    <nav>
+      <NavLink to={routes.home}>Home</NavLink>
 
-        {isLogin ? NavLinkContacts : NavLinksLogin}
-      </nav>
-    </>
+      {isLogin ? NavLinkContacts : NavLinksLogin}
+    </nav>
   );
+};
+
+Navigation.propTypes = {
+  isLogin: PropTypes.string,
 };
 
 const mapStateToProps = state => ({

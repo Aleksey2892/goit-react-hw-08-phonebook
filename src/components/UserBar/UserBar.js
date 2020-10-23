@@ -3,29 +3,24 @@ import { connect } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
 import PropTypes from 'prop-types';
 
-function UserBar({ loginEmail, onLogout }) {
-  return (
-    <>
-      {loginEmail && (
-        <div>
-          <h2>{loginEmail}</h2>
-          <button type="button" onClick={onLogout}>
-            Logout
-          </button>
-        </div>
-      )}
+const UserBar = ({ loginEmail, onLogout }) => (
+  <div>
+    {loginEmail && (
+      <>
+        <h2>{loginEmail}</h2>
+        <button type="button" onClick={onLogout}>
+          Logout
+        </button>
+      </>
+    )}
 
-      {!loginEmail && (
-        <div>
-          <h2>Welcome, please login before to use</h2>
-        </div>
-      )}
-    </>
-  );
-}
+    {!loginEmail && <h2>Welcome, please login before to use</h2>}
+  </div>
+);
 
 UserBar.propTypes = {
   loginEmail: PropTypes.string,
+  onLogout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
