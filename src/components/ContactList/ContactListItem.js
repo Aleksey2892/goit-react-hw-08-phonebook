@@ -2,15 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 import PropTypes from 'prop-types';
-import s from '../../styled';
 
 const ContactListItem = ({ name, number, onRemoveContact }) => (
-  <s.liItem>
+  <li>
     {name}: {number}
-    <s.BtnRemove type="button" onClick={onRemoveContact}>
+    <button type="button" onClick={onRemoveContact}>
       Delete
-    </s.BtnRemove>
-  </s.liItem>
+    </button>
+  </li>
 );
 
 ContactListItem.propTypes = {

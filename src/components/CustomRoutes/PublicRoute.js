@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import { authSelectors } from '../../redux/auth';
 import routes from '../../routes';
+import PropTypes from 'prop-types';
 
 const PublicRoute = ({
   component: Component,
@@ -21,6 +22,10 @@ const PublicRoute = ({
     }
   />
 );
+
+PublicRoute.propTypes = {
+  isLogin: PropTypes.string,
+};
 
 const mapStateToProps = state => ({
   isLogin: authSelectors.isLogin(state),

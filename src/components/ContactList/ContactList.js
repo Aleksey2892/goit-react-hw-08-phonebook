@@ -4,7 +4,6 @@ import { contactsSelectors } from '../../redux/contacts';
 import PropTypes from 'prop-types';
 
 import ContactListItem from './ContactListItem';
-import s from '../../styled';
 
 const ContactList = ({ contacts }) => {
   const isShowContacts = contacts.length > 0;
@@ -12,11 +11,11 @@ const ContactList = ({ contacts }) => {
   return (
     <>
       {isShowContacts && (
-        <s.Ul>
+        <ul>
           {contacts.map(({ id }) => (
             <ContactListItem key={id} id={id} />
           ))}
-        </s.Ul>
+        </ul>
       )}
 
       {!isShowContacts && <p>No contacts in data :(</p>}

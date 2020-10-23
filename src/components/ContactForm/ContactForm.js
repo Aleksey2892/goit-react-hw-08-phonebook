@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import contactsOperations from '../../redux/contacts/contactsOperations';
 import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
-import s from '../../styled';
 
 const INITIAL_STATE = {
   name: '',
@@ -56,30 +55,30 @@ class ContactForm extends Component {
 
     return (
       <>
-        <s.Form onSubmit={this.handleSubmit}>
-          <s.Label>
+        <form onSubmit={this.handleSubmit}>
+          <label>
             Name
-            <s.Input
+            <input
               type="text"
               placeholder="Сontact name"
               name="name"
               value={name}
               onChange={this.handleChange}
             />
-          </s.Label>
-          <s.Label>
+          </label>
+          <label>
             Number
-            <s.Input
+            <input
               type="number"
               placeholder="Сontact number"
               name="number"
               value={number}
               onChange={this.handleChange}
             />
-          </s.Label>
+          </label>
 
-          <s.Button type="submit">Add contact</s.Button>
-        </s.Form>
+          <button type="submit">Add contact</button>
+        </form>
       </>
     );
   }

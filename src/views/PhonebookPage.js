@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authSelectors, authOperations } from '../redux/auth';
 import PropTypes from 'prop-types';
 
 import contactsOperations from '../redux/contacts/contactsOperations';
@@ -34,12 +33,8 @@ class PhonebookPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLogin: authSelectors.isLogin(state),
-});
 const mapDispatchToProps = {
   getContactsWithLoading: contactsOperations.fetchContacts,
-  getLoginWithLoading: authOperations.getCurrentUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhonebookPage);
+export default connect(null, mapDispatchToProps)(PhonebookPage);
