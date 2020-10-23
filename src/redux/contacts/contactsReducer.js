@@ -22,6 +22,10 @@ const errorReducer = createReducer(null, {
   [contactsActions.fetchContactsError]: errorContacts,
   [contactsActions.addContactError]: errorContacts,
   [contactsActions.delContactError]: errorContacts,
+
+  [contactsActions.fetchContactsSuccess]: () => null,
+  [contactsActions.addContactSuccess]: () => null,
+  [contactsActions.delContactSuccess]: () => null,
 });
 
 export default combineReducers({

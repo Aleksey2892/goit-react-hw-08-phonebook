@@ -4,16 +4,21 @@ import { Redirect, Route } from 'react-router-dom';
 import { authSelectors } from '../../redux/auth';
 import routes from '../../routes';
 
-const PublicRoute = ({ component: Component, isLogin, ...routeProps }) => (
+const PublicRoute = ({
+  component: Component,
+  isLogin,
+  restricted,
+  ...routeProps
+}) => (
   <Route
     {...routeProps}
-    render={props => {
-      return !isLogin ? (
-        <Component {...props} />
+    render={props =>
+      isLogin && restricted ? (
+        <Redirect to={routes.contacts} />
       ) : (
-        <Redirect to={routes.login} />
-      );
-    }}
+        <Component {...props} />
+      )
+    }
   />
 );
 

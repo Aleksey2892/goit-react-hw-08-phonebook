@@ -17,7 +17,7 @@ function UserBar({ loginEmail, onLogout }) {
 
       {!loginEmail && (
         <div>
-          <h2>You are not registred</h2>
+          <h2>Welcome, please login before to use</h2>
         </div>
       )}
     </>

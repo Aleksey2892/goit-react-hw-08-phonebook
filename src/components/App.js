@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
@@ -19,13 +19,13 @@ const PhonebookPage = lazy(() =>
   import('../views/PhonebookPage' /* webpackChunkName: "phonebook-page" */),
 );
 const Register = lazy(() =>
-  import('../views/Register' /* webpackChunkName: "register-page" */),
+  import('../views/RegisterPage' /* webpackChunkName: "register-page" */),
 );
 const Login = lazy(() =>
-  import('../views/Login' /* webpackChunkName: "login-page" */),
+  import('../views/LoginPage' /* webpackChunkName: "login-page" */),
 );
 const Navigation = lazy(() =>
-  import('./Navigation/Navigation' /* webpackChunkName: "navigation-page" */),
+  import('./Navigation/Navigation' /* webpackChunkName: "navigation-view" */),
 );
 const UserBar = lazy(() =>
   import('./UserBar/UserBar' /* webpackChunkName: "user-view" */),
@@ -53,19 +53,29 @@ class App extends React.Component {
           <hr />
           <br />
           <Switch>
-            <Route path={routes.home} exact component={HomePage} />
+            <PublicRoute
+              path={routes.home}
+              exact
+              restricted={false}
+              component={HomePage}
+            />
             <PublicRoute
               path={routes.registration}
               exact
+              restricted={true}
               component={Register}
             />
-            <Route path={routes.login} component={Login} />
+            <PublicRoute
+              path={routes.login}
+              exact
+              restricted={true}
+              component={Login}
+            />
             <PrivateRoute
               path={routes.contacts}
               exact
               component={PhonebookPage}
             />
-            {/* <Route path={routes.contacts} component={PhonebookPage} /> */}
           </Switch>
         </Suspense>
       </BrowserRouter>

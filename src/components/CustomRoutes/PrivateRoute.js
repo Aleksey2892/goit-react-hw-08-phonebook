@@ -7,13 +7,9 @@ import routes from '../../routes';
 const PrivateRoute = ({ component: Component, isLogin, ...routeProps }) => (
   <Route
     {...routeProps}
-    render={props => {
-      return isLogin ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={routes.login} />
-      );
-    }}
+    render={props =>
+      isLogin ? <Component {...props} /> : <Redirect to={routes.login} />
+    }
   />
 );
 
