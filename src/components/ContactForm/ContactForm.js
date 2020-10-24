@@ -4,6 +4,9 @@ import contactsOperations from '../../redux/contacts/contactsOperations';
 import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 const INITIAL_STATE = {
   name: '',
   number: '',
@@ -54,32 +57,34 @@ class ContactForm extends Component {
     const { name, number } = this.state;
 
     return (
-      <>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name
-            <input
-              type="text"
-              placeholder="Сontact name"
-              name="name"
-              value={name}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Number
-            <input
-              type="number"
-              placeholder="Сontact number"
-              name="number"
-              value={number}
-              onChange={this.handleChange}
-            />
-          </label>
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <TextField
+            size="small"
+            id="contact name"
+            label="contact name"
+            variant="outlined"
+            type="text"
+            name="name"
+            value={name}
+            onChange={this.handleChange}
+          />
 
-          <button type="submit">Add contact</button>
-        </form>
-      </>
+          <TextField
+            size="small"
+            id="contact number"
+            label="contact number"
+            variant="outlined"
+            name="number"
+            value={number}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        <Button type="submit" variant="contained" color="primary" size="small">
+          Add contact
+        </Button>
+      </form>
     );
   }
 }

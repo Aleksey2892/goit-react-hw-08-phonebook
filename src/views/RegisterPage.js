@@ -5,6 +5,8 @@ import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
 
+import Button from '@material-ui/core/Button';
+
 const INITIAL_STATE = {
   name: '',
   email: '',
@@ -60,12 +62,19 @@ class Register extends Component {
             <input
               type="text"
               name="password"
-              placeholder="password"
+              placeholder="password (min 7 letters)"
               value={this.state.password}
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Register</button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="small"
+          >
+            Register
+          </Button>
         </form>
 
         <p>

@@ -4,16 +4,7 @@ import contactsActions from '../../redux/contacts/contactsActions';
 import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
-
-const Input = styled.input`
-  margin-bottom: 20px;
-  text-align: center;
-
-  &::placeholder {
-    font-size: 14px;
-  }
-`;
+import { TextField } from '@material-ui/core';
 
 const Filter = ({ contacts, filterValue, onFilter }) => {
   const isShowFilter = contacts.length > 2;
@@ -22,10 +13,13 @@ const Filter = ({ contacts, filterValue, onFilter }) => {
     <>
       {isShowFilter && (
         <div>
-          <p>Find contacts by name</p>
-          <Input
+          <p>Filter</p>
+          <TextField
+            size="small"
+            id="Find contacts by name"
+            label="Find contacts by name"
+            variant="outlined"
             type="text"
-            placeholder="Filter"
             name="filter"
             value={filterValue}
             onChange={onFilter}

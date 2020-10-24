@@ -5,6 +5,8 @@ import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
 
+import Button from '@material-ui/core/Button';
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -56,7 +58,14 @@ class Login extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Log In</button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="small"
+          >
+            Log In
+          </Button>
         </form>
 
         <p>

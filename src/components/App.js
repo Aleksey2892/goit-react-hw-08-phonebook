@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import { PublicRoute, PrivateRoute } from './CustomRoutes/';
 
+import { Layout, Header } from './Layouts';
 const HomePage = lazy(() =>
   import('../views/HomePage' /* webpackChunkName: "home-page" */),
 );
@@ -39,38 +40,38 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
-          <header>
-            <Navigation />
-            <UserBar />
-          </header>
+          <Layout>
+            <Header>
+              <Navigation />
+              <UserBar />
+            </Header>
 
-          <hr />
-          <br />
-          <Switch>
-            <PublicRoute
-              path={routes.home}
-              exact
-              restricted={false}
-              component={HomePage}
-            />
-            <PublicRoute
-              path={routes.registration}
-              exact
-              restricted={true}
-              component={Register}
-            />
-            <PublicRoute
-              path={routes.login}
-              exact
-              restricted={true}
-              component={Login}
-            />
-            <PrivateRoute
-              path={routes.contacts}
-              exact
-              component={PhonebookPage}
-            />
-          </Switch>
+            <Switch>
+              <PublicRoute
+                path={routes.home}
+                exact
+                restricted={false}
+                component={HomePage}
+              />
+              <PublicRoute
+                path={routes.registration}
+                exact
+                restricted={true}
+                component={Register}
+              />
+              <PublicRoute
+                path={routes.login}
+                exact
+                restricted={true}
+                component={Login}
+              />
+              <PrivateRoute
+                path={routes.contacts}
+                exact
+                component={PhonebookPage}
+              />
+            </Switch>
+          </Layout>
         </Suspense>
       </BrowserRouter>
     );

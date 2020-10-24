@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 import PropTypes from 'prop-types';
 
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
 const ContactListItem = ({ name, number, onRemoveContact }) => (
   <li>
     {name}: {number}
     <button type="button" onClick={onRemoveContact}>
-      Delete
+      <DeleteForeverIcon color="error" />
     </button>
   </li>
 );
