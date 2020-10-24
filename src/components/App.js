@@ -4,10 +4,12 @@ import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
+import Spinner from './Spinner/Spinner';
 
 import { PublicRoute, PrivateRoute } from './CustomRoutes/';
-
 import { Layout, Header } from './Layouts';
+import Navigation from './Navigation/Navigation';
+
 const HomePage = lazy(() =>
   import('../views/HomePage' /* webpackChunkName: "home-page" */),
 );
@@ -19,9 +21,6 @@ const RegisterPage = lazy(() =>
 );
 const LoginPage = lazy(() =>
   import('../views/LoginPage' /* webpackChunkName: "login-page" */),
-);
-const Navigation = lazy(() =>
-  import('./Navigation/Navigation' /* webpackChunkName: "navigation-view" */),
 );
 const UserBar = lazy(() =>
   import('./UserBar/UserBar' /* webpackChunkName: "user-view" */),
@@ -39,13 +38,15 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Layout>
-            <Header>
-              <Navigation />
-              <UserBar />
-            </Header>
+        <Suspense fallback={<Spinner />}>
+          <Header>
+            <Navigation />
+            <UserBar />
+          </Header>
 
+          {/* <Spinner /> */}
+
+          <Layout>
             <Switch>
               <PublicRoute
                 path={routes.home}

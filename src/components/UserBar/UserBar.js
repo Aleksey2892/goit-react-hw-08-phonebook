@@ -6,6 +6,7 @@ import spyIcon from '../../icons/spy.svg';
 import s from './UserBar.module.scss';
 
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -26,9 +27,15 @@ const UserBar = ({ isLoginEmail, onLogout }) => {
             {sliceEmail(isLoginEmail)}
           </Avatar>
           <h2 className={s.userEmail}>{isLoginEmail}</h2>
-          <button type="button" onClick={onLogout}>
+          <Button
+            type="button"
+            variant="outlined"
+            color="secondary"
+            size="small"
+            onClick={onLogout}
+          >
             Logout
-          </button>
+          </Button>
         </>
       )}
 
