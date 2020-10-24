@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
 import PropTypes from 'prop-types';
-import s from './UserBar.module.scss';
 import spyIcon from '../../icons/spy.svg';
+import s from './UserBar.module.scss';
 
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,13 +19,13 @@ const UserBar = ({ isLoginEmail, onLogout }) => {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={s.loginWrapper}>
       {isLoginEmail && (
         <>
           <Avatar classes={{ root: classes.root }}>
             {sliceEmail(isLoginEmail)}
           </Avatar>
-          <h2>{isLoginEmail}</h2>
+          <h2 className={s.userEmail}>{isLoginEmail}</h2>
           <button type="button" onClick={onLogout}>
             Logout
           </button>
