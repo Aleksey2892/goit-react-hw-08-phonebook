@@ -1,5 +1,5 @@
 export default {
-  home: '/',
+  home: '/home',
   login: '/login',
   registration: '/reg',
   contacts: '/contacts',

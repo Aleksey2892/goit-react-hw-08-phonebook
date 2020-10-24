@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
@@ -14,10 +14,10 @@ const HomePage = lazy(() =>
 const PhonebookPage = lazy(() =>
   import('../views/PhonebookPage' /* webpackChunkName: "phonebook-page" */),
 );
-const Register = lazy(() =>
+const RegisterPage = lazy(() =>
   import('../views/RegisterPage' /* webpackChunkName: "register-page" */),
 );
-const Login = lazy(() =>
+const LoginPage = lazy(() =>
   import('../views/LoginPage' /* webpackChunkName: "login-page" */),
 );
 const Navigation = lazy(() =>
@@ -57,19 +57,20 @@ class App extends React.Component {
                 path={routes.registration}
                 exact
                 restricted={true}
-                component={Register}
+                component={RegisterPage}
               />
               <PublicRoute
                 path={routes.login}
                 exact
                 restricted={true}
-                component={Login}
+                component={LoginPage}
               />
               <PrivateRoute
                 path={routes.contacts}
                 exact
                 component={PhonebookPage}
               />
+              <Redirect to={routes.home} />
             </Switch>
           </Layout>
         </Suspense>

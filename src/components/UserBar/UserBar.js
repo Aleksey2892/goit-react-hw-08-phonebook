@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
 import PropTypes from 'prop-types';
+import s from './UserBar.module.scss';
+import spyIcon from '../../icons/spy.svg';
 
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,7 +32,14 @@ const UserBar = ({ isLoginEmail, onLogout }) => {
         </>
       )}
 
-      {!isLoginEmail && <h2>Welcome, please login before to use</h2>}
+      {!isLoginEmail && (
+        <>
+          <h2 className={s.welcome}>
+            Welcome, user!
+            <img className={s.userIcon} src={spyIcon} alt="spy user" />
+          </h2>
+        </>
+      )}
     </div>
   );
 };

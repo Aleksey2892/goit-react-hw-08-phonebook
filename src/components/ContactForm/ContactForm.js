@@ -58,7 +58,7 @@ class ContactForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
+        <label>
           <TextField
             size="small"
             id="contact name"
@@ -79,7 +79,7 @@ class ContactForm extends Component {
             value={number}
             onChange={this.handleChange}
           />
-        </div>
+        </label>
 
         <Button type="submit" variant="contained" color="primary" size="small">
           Add contact

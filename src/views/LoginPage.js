@@ -5,6 +5,7 @@ import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
 
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 const INITIAL_STATE = {
@@ -42,18 +43,23 @@ class Login extends Component {
         <form onSubmit={this.handleSubmit}>
           Login
           <label>
-            <input
+            <TextField
+              size="small"
+              id="email"
+              label="email"
+              variant="outlined"
               type="text"
               name="email"
-              placeholder="email"
               value={this.state.email}
               onChange={this.handleChange}
             />
-
-            <input
+            <TextField
+              size="small"
+              id="password"
+              label="password"
+              variant="outlined"
               type="text"
               name="password"
-              placeholder="password"
               value={this.state.password}
               onChange={this.handleChange}
             />

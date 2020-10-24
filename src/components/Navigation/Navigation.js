@@ -4,19 +4,47 @@ import { NavLink } from 'react-router-dom';
 import { authSelectors } from '../../redux/auth';
 import routes from '../../routes';
 import PropTypes from 'prop-types';
+import s from './Navigation.module.scss';
 
 const Navigation = ({ isLogin }) => {
-  const NavLinkContacts = <NavLink to={routes.contacts}>Contacts</NavLink>;
+  const NavLinkContacts = (
+    <NavLink
+      className={s.link}
+      activeClassName={s.activeLink}
+      to={routes.contacts}
+    >
+      Contacts
+    </NavLink>
+  );
+
   const NavLinksLogin = (
     <>
-      <NavLink to={routes.login}>Log In</NavLink>
-      <NavLink to={routes.registration}>Registration</NavLink>
+      <NavLink
+        className={s.link}
+        activeClassName={s.activeLink}
+        to={routes.login}
+      >
+        LogIn
+      </NavLink>
+      <NavLink
+        className={s.link}
+        activeClassName={s.activeLink}
+        to={routes.registration}
+      >
+        Registration
+      </NavLink>
     </>
   );
 
   return (
-    <nav>
-      <NavLink to={routes.home}>Home</NavLink>
+    <nav className={s.nav}>
+      <NavLink
+        className={s.link}
+        activeClassName={s.activeLink}
+        to={routes.home}
+      >
+        Home
+      </NavLink>
 
       {isLogin ? NavLinkContacts : NavLinksLogin}
     </nav>
