@@ -5,6 +5,7 @@ import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
 
 import { TextField } from '@material-ui/core';
+import s from './Filter.module.scss';
 
 const Filter = ({ contacts, filterValue, onFilter }) => {
   const isShowFilter = contacts.length > 2;
@@ -12,8 +13,8 @@ const Filter = ({ contacts, filterValue, onFilter }) => {
   return (
     <>
       {isShowFilter && (
-        <div>
-          <p>Filter</p>
+        <div className={s.filter}>
+          <p className={s.titleFilter}>Filter</p>
           <TextField
             size="small"
             id="Find contacts by name"

@@ -44,8 +44,6 @@ class App extends React.Component {
             <UserBar />
           </Header>
 
-          {/* <Spinner /> */}
-
           <Layout>
             <Switch>
               <PublicRoute

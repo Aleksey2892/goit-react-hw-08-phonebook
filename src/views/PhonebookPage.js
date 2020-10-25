@@ -6,6 +6,7 @@ import contactsOperations from '../redux/contacts/contactsOperations';
 import ContactForm from '../components/ContactForm/ContactForm';
 import ContactList from '../components/ContactList/ContactList';
 import Filter from '../components/Filter/Filter';
+import s from './PhonebookPage.module.scss';
 
 class PhonebookPage extends Component {
   static propTypes = {
@@ -19,11 +20,9 @@ class PhonebookPage extends Component {
   render() {
     return (
       <div>
-        <h1>Phonebook</h1>
+        <h1 className={s.phonebook}>Phonebook</h1>
 
         <ContactForm />
-
-        <h2>Contacts</h2>
 
         <Filter />
 

@@ -6,6 +6,13 @@ import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import s from './ContactForm.module.scss';
+
+const styles = {
+  root: {
+    marginRight: '10px',
+  },
+};
 
 const INITIAL_STATE = {
   name: '',
@@ -57,9 +64,10 @@ class ContactForm extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={s.contactForm} onSubmit={this.handleSubmit}>
         <label>
           <TextField
+            style={styles.root}
             size="small"
             id="contact name"
             label="contact name"
@@ -81,9 +89,16 @@ class ContactForm extends Component {
           />
         </label>
 
-        <Button type="submit" variant="contained" color="primary" size="small">
-          Add contact
-        </Button>
+        <div className={s.btnWrapper}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="small"
+          >
+            Add contact
+          </Button>
+        </div>
       </form>
     );
   }
