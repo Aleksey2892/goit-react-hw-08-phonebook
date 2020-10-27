@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { contactsSelectors } from '../../redux/contacts';
 import PropTypes from 'prop-types';
+
 import ContactListItem from './ContactListItem';
 import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import s from './ContactList.module.scss';
 import animation from './ContactListAnimation.module.scss';
+import s from './ContactList.module.scss';
 
 const listLoader = (
   <div className="loaderBase">

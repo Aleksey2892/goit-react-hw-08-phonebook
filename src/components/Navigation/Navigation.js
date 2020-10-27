@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { authSelectors } from '../../redux/auth';
 import routes from '../../routes';
 import PropTypes from 'prop-types';
+
+import { CSSTransition } from 'react-transition-group';
+import '../animations.scss';
 import s from './Navigation.module.scss';
 
 const Navigation = ({ isLogin }) => {
@@ -37,17 +40,19 @@ const Navigation = ({ isLogin }) => {
   );
 
   return (
-    <nav className={s.nav}>
-      <NavLink
-        className={s.link}
-        activeClassName={s.activeLink}
-        to={routes.home}
-      >
-        Home
-      </NavLink>
+    <CSSTransition in={true} appear timeout={500} classNames="navigation">
+      <nav className={s.nav}>
+        <NavLink
+          className={s.link}
+          activeClassName={s.activeLink}
+          to={routes.home}
+        >
+          Home
+        </NavLink>
 
-      {isLogin ? NavLinkContacts : NavLinksLogin}
-    </nav>
+        {isLogin ? NavLinkContacts : NavLinksLogin}
+      </nav>
+    </CSSTransition>
   );
 };
 

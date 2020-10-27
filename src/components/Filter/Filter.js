@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 
 import { TextField } from '@material-ui/core';
 import { CSSTransition } from 'react-transition-group';
-import s from './Filter.module.scss';
 import '../animations.scss';
+import s from './Filter.module.scss';
 
 const Filter = ({ contacts, filterValue, onFilter }) => {
   const isShowFilter = contacts.length > 2;
