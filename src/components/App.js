@@ -9,6 +9,8 @@ import Spinner from './Spinner/Spinner';
 import { PublicRoute, PrivateRoute } from './CustomRoutes/';
 import { Layout, Header } from './Layouts';
 import Navigation from './Navigation/Navigation';
+import { CSSTransition } from 'react-transition-group';
+import './animations.scss';
 
 const HomePage = lazy(() =>
   import('../views/HomePage' /* webpackChunkName: "home-page" */),
@@ -40,7 +42,15 @@ class App extends React.Component {
       <BrowserRouter>
         <Suspense fallback={<Spinner />}>
           <Header>
-            <Navigation />
+            <CSSTransition
+              in={true}
+              appear
+              timeout={500}
+              classNames="navigation"
+            >
+              <Navigation />
+            </CSSTransition>
+
             <UserBar />
           </Header>
 

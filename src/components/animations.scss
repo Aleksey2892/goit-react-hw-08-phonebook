@@ -1,0 +1,29 @@
+.navigation-appear {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.navigation-appear-done {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 500ms linear;
+}
+
+.filter-enter {
+  transform: translateY(-150%);
+  opacity: 0;
+}
+.filter-enter-active {
+  transform: translateY(100%);
+  opacity: 1;
+  transition: all 250ms linear;
+}
+
+.filter-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+.filter-exit-active {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 250ms linear;
+}

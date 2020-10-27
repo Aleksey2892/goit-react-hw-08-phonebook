@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import ContactListItem from './ContactListItem';
 import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import s from './ContactList.module.scss';
+import animation from './ContactListAnimation.module.scss';
 
 const listLoader = (
   <div className="loaderBase">
@@ -28,13 +30,13 @@ const ContactList = ({ contacts, isLoader }) => {
 
       {isLoader && listLoader}
 
-      {isShowContacts && (
-        <ul>
-          {contacts.map(({ id }) => (
+      <TransitionGroup in={isShowContacts} component="ul">
+        {contacts.map(({ id }) => (
+          <CSSTransition key={id} timeout={250} classNames={animation}>
             <ContactListItem key={id} id={id} />
-          ))}
-        </ul>
-      )}
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
 
       {!isShowContacts && !isLoader && <p>No contacts in data :(</p>}
     </div>

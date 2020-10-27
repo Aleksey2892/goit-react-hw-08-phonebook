@@ -5,29 +5,34 @@ import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
 
 import { TextField } from '@material-ui/core';
+import { CSSTransition } from 'react-transition-group';
 import s from './Filter.module.scss';
+import '../animations.scss';
 
 const Filter = ({ contacts, filterValue, onFilter }) => {
   const isShowFilter = contacts.length > 2;
 
   return (
-    <>
-      {isShowFilter && (
-        <div className={s.filter}>
-          <p className={s.titleFilter}>Filter</p>
-          <TextField
-            size="small"
-            id="Find contacts by name"
-            label="Find contacts by name"
-            variant="outlined"
-            type="text"
-            name="filter"
-            value={filterValue}
-            onChange={onFilter}
-          />
-        </div>
-      )}
-    </>
+    <CSSTransition
+      in={isShowFilter}
+      timeout={250}
+      classNames="filter"
+      unmountOnExit
+    >
+      <div className={s.filter}>
+        <p className={s.titleFilter}>Filter</p>
+        <TextField
+          size="small"
+          id="Find contacts by name"
+          label="Find contacts by name"
+          variant="outlined"
+          type="text"
+          name="filter"
+          value={filterValue}
+          onChange={onFilter}
+        />
+      </div>
+    </CSSTransition>
   );
 };
 
