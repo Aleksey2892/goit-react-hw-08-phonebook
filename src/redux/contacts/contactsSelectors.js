@@ -23,9 +23,12 @@ const getContactById = (state, contactId) => {
   return contacts.find(item => contactId === item.id);
 };
 
+const getIsLoader = state => state.contacts.loader;
+
 export default {
   getContacts,
   getWithFilterContacts,
   getContactById,
   getFilterValue,
+  getIsLoader,
 };

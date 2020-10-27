@@ -5,7 +5,7 @@ import s from './Spinner.module.scss';
 
 export default function Spinner() {
   return (
-    <div className={s.spinner}>
+    <div className={s.spinnerComponent}>
       <Loader
         type="ThreeDots"
         color="#ff4500"

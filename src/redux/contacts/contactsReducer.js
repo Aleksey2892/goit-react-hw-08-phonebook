@@ -18,6 +18,19 @@ const itemsReducer = createReducer([], {
 const filterReducer = createReducer('', {
   [contactsActions.filterContacts]: filterContacts,
 });
+const loaderReducer = createReducer(false, {
+  [contactsActions.fetchContactsRequest]: () => true,
+  [contactsActions.fetchContactsSuccess]: () => false,
+  [contactsActions.fetchContactsError]: () => false,
+
+  [contactsActions.addContactRequest]: () => true,
+  [contactsActions.addContactSuccess]: () => false,
+  [contactsActions.addContactError]: () => false,
+
+  [contactsActions.delContactRequest]: () => true,
+  [contactsActions.delContactSuccess]: () => false,
+  [contactsActions.delContactError]: () => false,
+});
 const errorReducer = createReducer(null, {
   [contactsActions.fetchContactsError]: errorContacts,
   [contactsActions.addContactError]: errorContacts,
@@ -31,5 +44,6 @@ const errorReducer = createReducer(null, {
 export default combineReducers({
   items: itemsReducer,
   filter: filterReducer,
+  loader: loaderReducer,
   error: errorReducer,
 });

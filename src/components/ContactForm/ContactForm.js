@@ -10,7 +10,8 @@ import s from './ContactForm.module.scss';
 
 const styles = {
   root: {
-    marginRight: '10px',
+    marginBottom: '10px',
+    width: '100%',
   },
 };
 
@@ -65,7 +66,7 @@ class ContactForm extends Component {
 
     return (
       <form className={s.contactForm} onSubmit={this.handleSubmit}>
-        <label>
+        <label className={s.labelForm}>
           <TextField
             style={styles.root}
             size="small"
@@ -79,6 +80,7 @@ class ContactForm extends Component {
           />
 
           <TextField
+            style={styles.root}
             size="small"
             id="contact number"
             label="contact number"
@@ -91,6 +93,7 @@ class ContactForm extends Component {
 
         <div className={s.btnWrapper}>
           <Button
+            style={{ backgroundColor: 'rgba(255, 68, 0, 0.493)' }}
             type="submit"
             variant="contained"
             color="primary"

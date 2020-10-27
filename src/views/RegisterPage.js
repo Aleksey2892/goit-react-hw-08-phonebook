@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import s from './RegisterPage.module.scss';
 
 const INITIAL_STATE = {
   name: '',
@@ -41,10 +42,12 @@ class Register extends Component {
   render() {
     return (
       <>
+        <h2 className={s.titleRegistration}>Registration</h2>
+
         <form onSubmit={this.handleSubmit}>
-          Registration
-          <label>
+          <label className={s.registerLabel}>
             <TextField
+              style={{ marginBottom: '10px' }}
               size="small"
               id="name"
               label="name"
@@ -56,6 +59,7 @@ class Register extends Component {
             />
 
             <TextField
+              style={{ marginBottom: '10px' }}
               size="small"
               id="email"
               label="email"
@@ -67,6 +71,7 @@ class Register extends Component {
             />
 
             <TextField
+              style={{ marginBottom: '10px' }}
               size="small"
               id="password"
               label="password"
@@ -78,6 +83,7 @@ class Register extends Component {
             />
           </label>
           <Button
+            style={{ backgroundColor: 'rgba(255, 68, 0, 0.493)' }}
             type="submit"
             variant="contained"
             color="primary"
@@ -87,8 +93,8 @@ class Register extends Component {
           </Button>
         </form>
 
-        <p>
-          You have a login? Go to the login <Link to={routes.login}> page</Link>
+        <p className={s.linkToLogin}>
+          You have a login? Go to the <Link to={routes.login}>login page</Link>
         </p>
       </>
     );
