@@ -31,7 +31,7 @@ const ContactList = ({ contacts, isLoader }) => {
 
       {isLoader && listLoader}
 
-      <TransitionGroup in={isShowContacts} component="ul">
+      <TransitionGroup in={isShowContacts.toString()} component="ul">
         {contacts.map(({ id }) => (
           <CSSTransition key={id} timeout={250} classNames={animation}>
             <ContactListItem key={id} id={id} />
