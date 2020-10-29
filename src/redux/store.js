@@ -32,11 +32,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// {
-// user {
-//   name: 'alex';
-//   email: 'aleksey2892@gmail.com';
-// }
-// token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhlZmMyNzYwYzdiYTAwMTc1MmQwOTkiLCJpYXQiOjE2MDMyMDYxODN9.7Je8km40BOVwS3dd5vXfV29hTsBoWHta30z_yFOviTU';
-// }

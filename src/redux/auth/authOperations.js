@@ -1,5 +1,6 @@
 import { authActions } from './';
 import axios from 'axios';
+import toastr from '../../components/assets/toastrConfig/toastrConfig';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -26,6 +27,11 @@ const getCurrentUser = () => async (dispatch, getState) => {
 
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
+    toastr['error'](
+      'Something wrong/Что-то пошло не так.',
+      'Auth error/Ошибка авторизации',
+    );
+
     dispatch(authActions.getCurrentUserError(error));
   }
 };
@@ -38,8 +44,18 @@ const register = credentials => async dispatch => {
 
     tokenForAxios.setToken(data.token);
 
+    toastr['success'](
+      '',
+      'Registration successful/Вы успешно зарегистрировались.',
+    );
+
     dispatch(authActions.registerSuccess({ data }));
   } catch (error) {
+    toastr['error'](
+      'Something wrong/Что-то пошло не так.',
+      'Auth error/Ошибка авторизации',
+    );
+
     dispatch(authActions.registerError(error));
   }
 };
@@ -49,12 +65,18 @@ const logIn = credentials => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/login', credentials);
-    console.log(data);
 
     tokenForAxios.setToken(data.token);
 
+    toastr['success']('', 'You are logged in/Вы успешно авторизовались.');
+
     dispatch(authActions.loginSuccess(data));
   } catch (error) {
+    toastr['error'](
+      'Something wrong/Что-то пошло не так.',
+      'Auth error/Ошибка авторизации',
+    );
+
     dispatch(authActions.loginError(error));
   }
 };
@@ -69,6 +91,11 @@ const logOut = () => async dispatch => {
 
     dispatch(authActions.logoutSuccess());
   } catch (error) {
+    toastr['error'](
+      'Something wrong/Что-то пошло не так.',
+      'Auth error/Ошибка авторизации',
+    );
+
     dispatch(authActions.logoutError(error));
   }
 };

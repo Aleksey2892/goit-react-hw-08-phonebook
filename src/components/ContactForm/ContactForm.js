@@ -4,6 +4,7 @@ import contactsOperations from '../../redux/contacts/contactsOperations';
 import contactsSelectors from '../../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
 
+import toastr from '../assets/toastrConfig/toastrConfig';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import s from './ContactForm.module.scss';
@@ -41,7 +42,7 @@ class ContactForm extends Component {
   handleChange = ({ target }) => {
     const { name, value } = target;
 
-    this.setState({ [name]: value });
+    this.setState({ [name]: value.toUpperCase() });
   };
 
   handleSubmit = e => {
@@ -54,7 +55,12 @@ class ContactForm extends Component {
         contact => contact.name === name,
       );
 
-      if (isDuplicate) return alert(`'${name}' is already in contacts`);
+      if (isDuplicate) {
+        return toastr['warning'](
+          '',
+          `'${name}' is already in contacts/'${name}' уже есть в контактах`,
+        );
+      }
 
       this.props.onSubmit(newContact);
       this.resetState();

@@ -26,8 +26,8 @@ const ContactListItem = ({ name, number, onRemoveContact }) => {
 
 ContactListItem.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  number: PropTypes.string,
   onRemoveContact: PropTypes.func.isRequired,
 };
 

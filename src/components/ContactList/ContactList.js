@@ -4,32 +4,25 @@ import { contactsSelectors } from '../../redux/contacts';
 import PropTypes from 'prop-types';
 
 import ContactListItem from './ContactListItem';
-import Loader from 'react-loader-spinner';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Spinner from '../assets/Spinner/Spinner';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import animation from './ContactListAnimation.module.scss';
 import s from './ContactList.module.scss';
 
-const listLoader = (
-  <div className="loaderBase">
-    <Loader
-      type="ThreeDots"
-      color="#ff4500"
-      height={75}
-      width={75}
-      timeout={0}
-    />
-  </div>
-);
-
 const ContactList = ({ contacts, isLoader }) => {
   const isShowContacts = contacts.length > 0;
+  const spinnerConfig = {
+    height: 75,
+    width: 75,
+    className: 'contactSpinner',
+    type: 'ThreeDots',
+  };
 
   return (
     <div className={s.contactItemsWrapper}>
       <h2 className={s.contactsTitle}>Contacts</h2>
 
-      {isLoader && listLoader}
+      {isLoader && <Spinner {...spinnerConfig} />}
 
       <TransitionGroup in={isShowContacts.toString()} component="ul">
         {contacts.map(({ id }) => (

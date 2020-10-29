@@ -5,9 +5,9 @@ import authActions from './authActions';
 const initUserState = { name: null, email: null };
 
 const user = createReducer(initUserState, {
-  [authActions.getCurrentUserSuccess]: (state, { payload }) => payload,
-  [authActions.registerSuccess]: (state, { payload }) => payload.user,
-  [authActions.loginSuccess]: (state, { payload }) => payload.user,
+  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload,
+  [authActions.registerSuccess]: (_, { payload }) => payload.user,
+  [authActions.loginSuccess]: (_, { payload }) => payload.user,
   [authActions.logoutSuccess]: () => initUserState,
 });
 
@@ -18,10 +18,10 @@ const token = createReducer(null, {
 });
 
 const error = createReducer(null, {
-  [authActions.getCurrentUserError]: (state, { payload }) => payload,
-  [authActions.registerError]: (state, { payload }) => payload,
-  [authActions.loginError]: (state, { payload }) => payload,
-  [authActions.logoutError]: (state, { payload }) => payload,
+  [authActions.getCurrentUserError]: (_, { payload }) => payload,
+  [authActions.registerError]: (_, { payload }) => payload,
+  [authActions.loginError]: (_, { payload }) => payload,
+  [authActions.logoutError]: (_, { payload }) => payload,
 
   [authActions.getCurrentUserSuccess]: () => null,
   [authActions.registerSuccess]: () => null,

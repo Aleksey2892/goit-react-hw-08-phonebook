@@ -4,8 +4,8 @@ import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { authOperations } from '../redux/auth';
 import routes from '../routes';
 import PropTypes from 'prop-types';
-import Spinner from './Spinner/Spinner';
 
+import Spinner from './assets/Spinner/Spinner';
 import { PublicRoute, PrivateRoute } from './CustomRoutes/';
 import { Layout, Header } from './Layouts';
 import Navigation from './Navigation/Navigation';
