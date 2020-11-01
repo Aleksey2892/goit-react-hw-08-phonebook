@@ -8,6 +8,8 @@ import s from './UserBar.module.scss';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { CSSTransition } from 'react-transition-group';
+import '../animations.scss';
 
 const useStyles = makeStyles({
   root: {
@@ -20,34 +22,36 @@ const UserBar = ({ isLoginEmail, onLogout }) => {
   const classes = useStyles();
 
   return (
-    <div className={s.loginWrapper}>
-      {isLoginEmail && (
-        <>
-          <Avatar classes={{ root: classes.root }}>
-            {sliceEmail(isLoginEmail)}
-          </Avatar>
-          <h2 className={s.userEmail}>{isLoginEmail}</h2>
-          <Button
-            type="button"
-            variant="outlined"
-            color="secondary"
-            size="small"
-            onClick={onLogout}
-          >
-            Logout
-          </Button>
-        </>
-      )}
+    <CSSTransition in={true} appear timeout={500} classNames="userbar">
+      <div className={s.loginWrapper}>
+        {isLoginEmail && (
+          <>
+            <Avatar classes={{ root: classes.root }}>
+              {sliceEmail(isLoginEmail)}
+            </Avatar>
+            <h2 className={s.userEmail}>{isLoginEmail}</h2>
+            <Button
+              type="button"
+              variant="outlined"
+              color="secondary"
+              size="small"
+              onClick={onLogout}
+            >
+              Logout
+            </Button>
+          </>
+        )}
 
-      {!isLoginEmail && (
-        <>
-          <h2 className={s.welcome}>
-            Welcome, user!
-            <img className={s.userIcon} src={spyIcon} alt="spy user" />
-          </h2>
-        </>
-      )}
-    </div>
+        {!isLoginEmail && (
+          <>
+            <h2 className={s.welcome}>
+              Welcome, user!
+              <img className={s.userIcon} src={spyIcon} alt="spy user" />
+            </h2>
+          </>
+        )}
+      </div>
+    </CSSTransition>
   );
 };
 

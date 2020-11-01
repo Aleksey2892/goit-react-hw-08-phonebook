@@ -9,6 +9,7 @@ import Spinner from './assets/Spinner/Spinner';
 import { PublicRoute, PrivateRoute } from './CustomRoutes/';
 import { Layout, Header } from './Layouts';
 import Navigation from './Navigation/Navigation';
+import UserBar from './UserBar/UserBar';
 
 const HomePage = lazy(() =>
   import('../views/HomePage' /* webpackChunkName: "home-page" */),
@@ -21,9 +22,6 @@ const RegisterPage = lazy(() =>
 );
 const LoginPage = lazy(() =>
   import('../views/LoginPage' /* webpackChunkName: "login-page" */),
-);
-const UserBar = lazy(() =>
-  import('./UserBar/UserBar' /* webpackChunkName: "user-view" */),
 );
 
 class App extends React.Component {
@@ -38,12 +36,11 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
+        <Header>
+          <Navigation />
+          <UserBar />
+        </Header>
         <Suspense fallback={<Spinner />}>
-          <Header>
-            <Navigation />
-            <UserBar />
-          </Header>
-
           <Layout>
             <Switch>
               <PublicRoute

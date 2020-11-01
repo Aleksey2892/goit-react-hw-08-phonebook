@@ -8,6 +8,16 @@
   transition: all 500ms linear;
 }
 
+.userbar-appear {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.userbar-appear-done {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 500ms linear;
+}
+
 .filter-enter {
   transform: translateY(-150%);
   opacity: 0;
