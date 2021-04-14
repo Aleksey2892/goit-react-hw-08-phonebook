@@ -77,7 +77,7 @@ class Register extends Component {
               label="password"
               variant="outlined"
               type="text"
-              name="password (min 7 letters)"
+              name="password" /*(min 7 letters)*/
               value={this.state.password}
               onChange={this.handleChange}
             />
